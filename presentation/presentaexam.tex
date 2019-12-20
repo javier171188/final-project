@@ -12,6 +12,7 @@
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage{multirow}
 % % %\usepackage{dsfont}
 \usepackage{amsmath}
@@ -32,7 +33,7 @@
 \title{The News Classifier}
 \subtitle{ Final Project  }
 \titlegraphic{\includegraphics[width=2cm]{ironhack_logo.png}} 
-\author{Ulises Aquino \\ and Javier Alvarez Jiménez}
+\author{Ulises Aquino  \\ and Javier Alvarez Jiménez}
 
 %\titlegraphic{%
 %  \begin{picture}(0,0)
@@ -105,36 +106,39 @@ Mexico }
 \begin{frame}
 \frametitle{Steps}
 \begin{itemize}
-\item We scrap as many news as we can
-\item We make a sentiment analysis for all the news (SentimentIntensityAnalyzer from nltk)
-\item We clusterize the news (vectorization with TfidfVectorizer, clustering with HDBSCAN and cosine similarity)
-\item We summarize every cluster, and get a sentiment score per cluster
-\item We upload all the work to mongodb (harder than it sound, ids, structure, etc)
+\item Scrap  news  \pause
+\item Sentiment analysis  \pause
+\item Clusterize  \pause
+\item Summarize and analyze the clusters \pause
+\item Upload 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Text Summarization\footnote[frame]{https://stackabuse.com/text-summarization-with-nltk-in-python/} } 
+\frametitle{Text Summarization\footnote[frame]{\url{https://stackabuse.com/text-summarization-with-nltk-in-python/}} } 
 Algorithm:
 \begin{itemize}
-\item Text $\rightarrow $ sentences
-\item Get bag of words (avoid stop words, cleaning)
-\item Give scores to words (in this case, according to the relative frequency)
-\item From words scores, we can rate the sentences
-\item We keep the sentences with the highest scores
+\item Text $\rightarrow $ sentences \pause
+\item Bag of words  \pause
+\item Scores the words  \pause
+\item Rate the sentences \pause
+\item Keep the best sentences 
 \end{itemize}
 
+
+\end{frame}
+\begin{frame}
+Final work: \url{https://bias.netlify.com/}
 
 \end{frame}
 \section{Future Steps}
 \begin{frame}
 \frametitle{Recommendation System}
-We want to build a recommendation System for the article.
-We use look for the most similar user and recommend articles from it.
+
 The key point is to get scores from the users.
 \begin{itemize}
-\item $+1$ if the user read the article
-\item $+1$ if the user saves the article
+\item $+1$ if the user read the article \pause
+\item $+1$ if the user saves the article \pause
 \item If the user comments the article, we make a sentiment analysis  and we add the compound value
 \end{itemize}
 \end{frame}
@@ -142,14 +146,14 @@ The key point is to get scores from the users.
 \frametitle{Improvements}
 
  The clustering system
- \begin{figure}  \label{fig:good}
+% \begin{figure}  \label{fig:good}
   %\centering
   
   
-   \includegraphics[width=1  \textwidth]{good.png}
-  \caption{Good cluster.}
-  \label{fig:good}
-\end{figure}
+ %  \includegraphics[width=1  \textwidth]{good.png}
+ % \caption{Good cluster.}
+ % \label{fig:good}
+%\end{figure}
 
 
 
@@ -157,7 +161,7 @@ The key point is to get scores from the users.
   %\centering
   
   
-   \includegraphics[width=1\textwidth]{bad.png}
+   \includegraphics[width=1.2\textwidth]{bad.png}
   \caption{Bad cluster.}
   \label{fig:bad}
 \end{figure}
@@ -166,12 +170,54 @@ The key point is to get scores from the users.
 
 
 \begin{frame}
+
+
+
 \begin{itemize}
+\item Track the news
+\begin{itemize}
+\item Classification according to the clusters
+\end{itemize}
 \item Ideas after use it
+\begin{itemize}
+\item Correct the titles
+\end{itemize}
 \item Suggestions...
 \end{itemize}
 \end{frame}
 \end{document}
+
+
+I never thought that I would use textmaker to check spelling XD
+
+Nowadays there are plenty information media, so keeping track of every one of the news has become in an impossible task. An even harder and related problem is that media sometimes present a bias, which make hard to trust the articles we find online.
+
+This project presents the firs step to solve the previously mentioned problems. This repository only contains the recollection and analysis of the news. For the development of the graphic interface please check [here](http://romantic-lamport-229bd1.netlify.com).
+
+
+## Steps
+
+* We scrap the rss of the following media: CNN, The Wall Street Journal, BBC, USA Today and the New York Times. 
+
+* We make a sentiment analysis for all of the scraped articles. For this step we use the SentimentIntensityAnalyzer from nltk.
+
+* We clusterize the news. To vectorize the text we use TfidfVectorizer, then we cluster by the HDNSCAN algorithm and the cosine similarity to get a distance.
+
+* The next step is to summarize the clusters. For this task we used the algorithm presented [here](https://stackabuse.com/text-summarization-with-nltk-in-python/).
+
+* Finally we upload the data to a mongo database to feed the app.
+
+## Future Improvements
+
+Since this project only represents a first step, we are planning to make several improvements, for example:
+
+* Refine the clustering system
+* Change the summary algorithm
+* Add a recommendation system
+* Track the most important news through time
+
+
+
 
 \subsection{Tensor Geométrico Cuántico}
 \begin{frame} 
